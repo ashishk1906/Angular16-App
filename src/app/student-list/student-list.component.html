@@ -1,0 +1,9 @@
+<h2>Student List</h2>
+<ul>
+  <li *ngFor="let student of students">
+    <strong>{{ student.name }}</strong> - Age: {{ student.age }} - Grade: {{ student.grade }}
+    <span *ngIf="student.isActive" style="color: green;">(Active)</span>
+    <span *ngIf="!student.isActive" style="color: red;">(Inactive)</span>
+    <button [routerLink]="['/student', student.id]">View Details</button>
+  </li>
+</ul>
