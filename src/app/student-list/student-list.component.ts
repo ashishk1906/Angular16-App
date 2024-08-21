@@ -1,15 +1,26 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { StudentService } from '../student.service';
 import { Student } from '../student.model';
 
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
-  styleUrls: ['./student-list.component.scss']
+  styleUrls: ['./student-list.component.scss'],
 })
 export class StudentListComponent {
-  students: Student[] = [
-    { id: 1, name: 'Alice', age: 20, grade: 'A', isActive: true },
-    { id: 2, name: 'Bob', age: 22, grade: 'B', isActive: false },
-    { id: 3, name: 'Charlie', age: 23, grade: 'A', isActive: true }
-  ];
+  students = this.studentService.getStudents();
+  message = ''; 
+  selectedStudent?: Student; 
+
+  constructor(private studentService: StudentService, private router: Router) {}
+
+  viewDetails(student: Student) {
+    this.selectedStudent = student;
+  }
+
+  handleBackClick() {
+    this.message = 'Returned to Student List';
+    this.selectedStudent = undefined; 
+  }
 }

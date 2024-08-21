@@ -1,15 +1,15 @@
 <ng-template #studentTemplate let-student>
-    <div>
-      <h2>{{ student.name }}'s Details</h2>
-      <p>Age: {{ student.age }}</p>
-      <p>Grade: {{ student.grade }}</p>
-      <p>Status: {{ student.isActive ? 'Active' : 'Inactive' }}</p>
-    </div>
-  </ng-template>
-  
-  <div class="container">
-  <ng-container *ngIf="selectedStudent; else noStudent">
-    <ng-container *ngTemplateOutlet="studentTemplate; context: { $implicit: selectedStudent }"></ng-container>
+  <div>
+    <h2>{{ student.name }}'s Details</h2>
+    <p>Age: {{ student.age }}</p>
+    <p>Grade: {{ student.grade }}</p>
+    <p>Status: {{ student.isActive ? 'Active' : 'Inactive' }}</p>
+  </div>
+</ng-template>
+
+<div class="container">
+  <ng-container *ngIf="student; else noStudent">
+    <ng-container *ngTemplateOutlet="studentTemplate; context: { $implicit: student }"></ng-container>
     <button class="back-button" (click)="goBack()">Back</button>
   </ng-container>
 
@@ -17,5 +17,3 @@
     <p>No student selected.</p>
   </ng-template>
 </div>
-
-  

@@ -1,9 +1,24 @@
 <h2>Student List</h2>
 <ul>
   <li *ngFor="let student of students">
+    <!-- Interpolation (One-Way Binding) -->
     <strong>{{ student.name }}</strong> - Age: {{ student.age }} - Grade: {{ student.grade }}
-    <span *ngIf="student.isActive" style="color: green;">(Active)</span>
-    <span *ngIf="!student.isActive" style="color: red;">(Inactive)</span>
-    <button [routerLink]="['/student', student.id]">View Details</button>
+    
+    <!-- Property Binding (One-Way Binding) -->
+    <span [style.color]="student.isActive ? 'green' : 'red'">
+      {{ student.isActive ? '(Active)' : '(Inactive)' }}
+    </span>
+    
+    <!-- Two-Way Data Binding -->
+    <input [(ngModel)]="student.name" placeholder="Edit name"/>
+    
+    <button (click)="viewDetails(student)">View Details</button>
   </li>
 </ul>
+
+<app-student-detail
+  [student]="selectedStudent"
+  (backClicked)="handleBackClick()">
+</app-student-detail>
+
+<p>{{ message }}</p> 
