@@ -12,13 +12,34 @@
     <!-- Two-Way Data Binding -->
     <input [(ngModel)]="student.name" placeholder="Edit name"/>
     
+    <!-- Event Binding for Viewing Details -->
     <button (click)="viewDetails(student)">View Details</button>
   </li>
 </ul>
 
+
 <app-student-detail
-  [student]="selectedStudent"
-  (backClicked)="handleBackClick()">
+  [student]="selectedStudent"  
+  (backClicked)="handleBackClick()"> 
 </app-student-detail>
 
-<p>{{ message }}</p> 
+
+<p>{{ message }}</p>
+
+
+<div *ngIf="productData">
+  <h3>Product Data</h3>
+  <p>Name: {{ productData.title }}</p>
+  <p>Description: {{ productData.description }}</p>
+  <p>Price: ${{ productData.price }}</p>
+</div>
+
+
+<div *ngIf="userIntros; else errorTemplate">
+  <h3>User Intros</h3>
+  <pre>{{ userIntros | json }}</pre>
+</div>
+
+<ng-template #errorTemplate>
+  <p>Error: {{ errorMessage }}</p>
+</ng-template>
